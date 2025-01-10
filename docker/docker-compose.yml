@@ -1,0 +1,20 @@
+services:
+  qemu-x86:
+    build:
+      context: ./x86
+    network_mode: bridge
+    privileged: true
+    volumes:
+      - ./x86/x86.img:/vm/x86.img
+    ports:
+      - "2222:22" # SSH port mapping for x86 VM
+
+  qemu-arm:
+    build:
+      context: ./arm
+    network_mode: bridge
+    privileged: true
+    volumes:
+      - ./arm/arm.img:/vm/arm.img
+    ports:
+      - "2223:22" # SSH port mapping for arm64 VM

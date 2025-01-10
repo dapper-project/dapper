@@ -63,3 +63,5 @@ vanilla-dump/
 dapper-vms
 dapper-vms.pub
 .history/
+
+*.bak
