@@ -1,0 +1,42 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up dependencies
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libprotobuf-dev \
+            libprotobuf-c-dev protobuf-c-compiler protobuf-compiler \
+            python-protobuf pkg-config libnl-3-dev libnet-dev libcap-dev \
+            libbsd-dev python3-pip cmake
+          python3 -m pip install pyelftools jsonpath-ng pyro4 psutil \
+            protobuf==3.20 capstone keystone keystone-engine
+
+
+      # Step 3: Build the project
+      - name: Build Project
+        run: make -j$(nproc)
+
+      # Step 4: Run the vdso target
+      #- name: Run vdso
+      #  run: make vdso
+
+      # Step 5: Clean the build
+      - name: Clean Project
+        run: make clean
