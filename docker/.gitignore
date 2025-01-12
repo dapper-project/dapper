@@ -1,2 +1,4 @@
 x86.img
 arm.img
+
+*.tar.gz
