@@ -1,6 +1,6 @@
 #!/bin/bash
 # FIXME: Change to the Dapper(criu) path and the binary path
-DAPPER_PATH=/home/dapper/dapper
+DAPPER_PATH=~/dapper
 BIN_PATH=$DAPPER_PATH/test/loop/
 
 criu=$DAPPER_PATH/criu-3.15/criu/criu
